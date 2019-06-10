@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "helloworld-params", "helloworld-params\helloworld-params.vcxproj", "{7CDACF53-BE03-4AF5-97EC-6C2D8D514E8F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7CDACF53-BE03-4AF5-97EC-6C2D8D514E8F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7CDACF53-BE03-4AF5-97EC-6C2D8D514E8F}.Debug|Win32.Build.0 = Debug|Win32
+		{7CDACF53-BE03-4AF5-97EC-6C2D8D514E8F}.Release|Win32.ActiveCfg = Release|Win32
+		{7CDACF53-BE03-4AF5-97EC-6C2D8D514E8F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

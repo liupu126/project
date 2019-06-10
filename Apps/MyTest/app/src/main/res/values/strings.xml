@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">MyTest</string>
+    <string name="button_crash">Crash</string>
+    <string name="button_anr">ANR</string>
+    <string name="button_anr_click">Keep clicking</string>
+    <string name="button_oeminfo">Oeminfo</string>
+    <string name="button_oeminfo_binder_timeout">binder timeout</string>
+    <string name="button_cts">CTS</string>
+    <string name="button_testInputMethodSubtypesOfSystemImes">testInputMethodSubtypesOfSystemImes</string>
+</resources>
