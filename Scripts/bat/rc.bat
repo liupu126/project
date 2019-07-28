@@ -1,0 +1,1 @@
+adb wait-for-device && adb reboot recovery

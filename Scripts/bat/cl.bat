@@ -1,0 +1,3 @@
+::Program:
+::	Clear logs: logcat dmesg ...
+adb shell logcat -c && adb shell dmesg -C

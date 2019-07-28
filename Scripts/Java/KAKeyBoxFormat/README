@@ -1,0 +1,4 @@
+Format Key Attestation keybox file.
+
+Compile: javac KAKeyBoxFormat.java
+Execute: java KAKeyBoxFormat <project_name> <sn_no> <sn_no_start> <sn_no_end> <input_file>
