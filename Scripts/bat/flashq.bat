@@ -21,10 +21,10 @@ fastboot flash vbmeta_system %image_dir%\vbmeta_system.img
 fastboot flash dtbo %image_dir%\dtbo.img
 fastboot flash metadata %image_dir%\metadata.img
 fastboot flash userdata %image_dir%\userdata.img
-:: fastboot flash recovery %image_dir%\recovery.img
+fastboot flash recovery %image_dir%\recovery.img
 
 ::reboot
-pause
+:: pause
 fastboot reboot
 
 :end
