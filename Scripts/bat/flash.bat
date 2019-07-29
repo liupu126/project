@@ -69,6 +69,10 @@ call :EXIT_FASTBOOT
 	fastboot flash metadata %image_dir%\metadata.img || goto :FASTBOOT_FAILED
 @goto :end
 
+:FLASH_PRODUCT
+	fastboot flash product %image_dir%\product.img || goto :FASTBOOT_FAILED
+@goto :end
+
 :FLASH_AB
 	call :FLASH_BOOTLOADER
 	call :FLASH_BOOT
@@ -178,10 +182,21 @@ call :EXIT_FASTBOOT
 	call :FLASH_VENDOR
 	call :FLASH_VBMETA
 	call :FLASH_DTBO
-	call :FLASH_USERDATA
 	call :FLASH_METADATA
+	call :FLASH_USERDATA
 @goto :end
-::::::::::::::::::::::::::::::::::::::::::::::::::P end
+
+:FLASH_Q_ALL
+	call :FLASH_BOOTLOADER
+	call :FLASH_BOOT
+	call :FLASH_SYSTEM
+	call :FLASH_VENDOR
+	call :FLASH_VBMETA
+	call :FLASH_DTBO
+	call :FLASH_METADATA
+	call :FLASH_USERDATA
+	call :FLASH_PRODUCT
+@goto :end
 
 :FLASH_OTHER
 	@if exist %image_dir%\%image_option%.img (
@@ -277,6 +292,8 @@ call :EXIT_FASTBOOT
 		call :FLASH_P_BSVVDR
 	) else if "%image_option%" == "pall" (
 		call :FLASH_P_ALL
+	) else if "%image_option%" == "qall" (
+		call :FLASH_Q_ALL
 	) else if "%image_name%" == "%null%" (
 		call :FLASH_OTHER
 	) else (

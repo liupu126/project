@@ -1,0 +1,1 @@
+adb shell "getprop ro.boot.opcarrier && getprop ro.boot.slot_suffix && getprop ro.system.build.fingerprint && getprop ro.product.build.fingerprint && getprop ro.vendor.build.fingerprint"

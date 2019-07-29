@@ -24,7 +24,10 @@ adb wait-for-device
 ping 127.0.0.1 -n 20 > nul
 adb shell mkdir -p /sdcard/.lii
 adb push %attestation_file% /sdcard/.lii/keyboxes_ciphered.xml
-adb shell dumpsys engineer.native --install_keybox
+:: Android P
+:: adb shell dumpsys engineer.native --install_keybox
+:: Android Q
+adb shell dumpsys engineer --install_keybox
 
 ::Media keybox
 adb shell dumpsys media.drm --provision_keybox=%widevine_keydata%

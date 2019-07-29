@@ -3,15 +3,9 @@ package com.braden.mytest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 //import android.support.v7.app.AppCompatActivity;
-import android.content.pm.ProviderInfo;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.braden.mytest.anr.ANRActivity;
@@ -19,13 +13,6 @@ import com.braden.mytest.crash.CrashActivity;
 import com.braden.mytest.oeminfo.OeminfoActivity;
 import com.braden.mytest.cts.CtsActivity;
 import com.braden.mytest.utils.TestUtils;
-
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-import java.util.List;
-import android.app.ActivityManager;
-import android.app.ActivityManager.MemoryInfo;
-
 
 public class MainActivity extends Activity
         implements View.OnClickListener {
