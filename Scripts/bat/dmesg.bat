@@ -18,7 +18,8 @@ if %hh% LSS 10 set hh=0%hh%
 set log_suffix=%date:~0,4%%date:~5,2%%date:~8,2%%hh%%time:~3,2%%time:~6,2%
 
 set TXT_EXE=E:\program\UltraEdit_v25.0.0.58_x64_zh_CN\UltraEdit\uedit64.exe
-set dst_dir=H:\log\dmesg
+::set dst_dir=H:\log\dmesg
+set dst_dir=N:\work\log\dmesg
 set dst_file=%dst_dir%\dmesg_%log_suffix%
 
 if not exist %dst_dir% mkdir %dst_dir%

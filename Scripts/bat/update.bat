@@ -1,0 +1,1 @@
+adb wait-for-device && adb shell am start -a oneplus.intent.action.CheckUpdate

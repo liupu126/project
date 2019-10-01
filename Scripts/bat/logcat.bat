@@ -13,6 +13,8 @@
 @echo off
 
 set op1=%1
+set op2=%2
+set op_last=%op2%
 set null=
 
 set OLDDIR=%cd%
@@ -22,11 +24,17 @@ set /a hh=%time:~0,2%
 if %hh% LSS 10 set hh=0%hh%
 set log_suffix=%date:~0,4%%date:~5,2%%date:~8,2%%hh%%time:~3,2%%time:~6,2%
 
+@set txt_exe0=E:\program\Notepad++\notepad++.exe
 @set txt_exe1=E:\program\UltraEdit_v25.0.0.58_x64_zh_CN\UltraEdit\uedit64.exe
 @set txt_exe2=D:\Programs\UltraEdit\uedit64.exe
-if exist %txt_exe1% (
+if "%op_last%" == "np" (
+	set TXT_EXE=%txt_exe0%
+	::set dst_dir=H:\log\logcat
+	set dst_dir=N:\work\log\logcat
+) else if exist %txt_exe1% (
 	set TXT_EXE=%txt_exe1%
-	set dst_dir=H:\log\logcat
+	::set dst_dir=H:\log\logcat
+	set dst_dir=N:\work\log\logcat
 ) else (
 	set TXT_EXE=%txt_exe2%
 	set dst_dir=E:\Workspace\oneplus\logcat
