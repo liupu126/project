@@ -1,0 +1,9 @@
+Host pgerrit.oneplus.cn
+User braden.liu
+Port 29418
+Hostname pgerrit.oneplus.cn
+
+Host nj_pgerrit.oneplus.cn
+User braden.liu
+Port 29418
+Hostname nj_pgerrit.oneplus.cn

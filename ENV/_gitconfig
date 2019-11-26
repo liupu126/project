@@ -1,0 +1,28 @@
+[user]
+	name = Braden Liu
+[user]
+	email = liupu126@126.com
+[merge]
+	tool = vimdiff
+[core]
+	editor = vim
+[commit]
+	template = ~/.git_log_message
+[color]
+	ui = auto
+[alias]
+	br = branch
+	ci = commit
+	cia = commit --amend
+	co = checkout
+	cp = cherry-pick
+	df = diff
+	dfc = diff --cached
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgall = log --color --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen (%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	lgd = log --color --graph --decorate --oneline
+	lgda = log --color --graph --decorate --oneline --all
+	pom = push origin master
+	sh = show
+	shs = show --name-status
+	st = status

@@ -1,0 +1,67 @@
+ENV
+
+====================================================================================================
+Git for windows |
+----------------------------------------------------------------------------------------------------
+	1. 下载Git for windows软件：https://gitforwindows.org/
+	#2. 生成ssh key，并注册到github
+	#	Reference to https://help.github.com/articles/connecting-to-github-with-ssh/
+	#	Reference to SSH and GPG keys： https://github.com/settings/keys
+	3. clone git repository
+		git clone https://github.com/liupu126/worknotes.git
+	4. set ENV
+		(1) ~/.bashrc
+			copy|add _bashrc to ~/.bashrc
+		(2) ~/.gitconfig
+			copy _gitconfig to ~/.gitconfig										# name和mail修改下
+			copy _git_log_message to ~/.git_log_message  [In the company env]
+		(3) ~/.vim
+			copy res/vim/vim_cfg.tar.gz to ~
+			tar -xvzf vim_cfg.tar.gz
+		（4） bugreport(linux vm)
+			# ~/bin/ 放如下文件：
+			# https://github.com/sonyxperiadev/ChkBugReport/wiki/How-to-install-it
+			chkbugreport
+			chkbugreport.jar
+			ddmlib.jar (Android Studio安装目录有)
+====================================================================================================
+linux vm |
+----------------------------------------------------------------------------------------------------
+gerrit & SSH key：
+	#生成ssh key
+	ssh-keygen -t rsa
+
+	#拷贝public key到gerrit - SSH Keys
+	~/.ssh/id_rsa.pub
+	
+	#配置config
+	copy config to ~/.ssh/config												# check contents
+
+	#测试配置
+	ssh -p 29418 pgerrit.oneplus.cn
+----------------------------------------------------------------------------------------------------
+~/.gitconfig
+====================================================================================================
+配置windows端环境 |
+----------------------------------------------------------------------------------------------------
+	1. 环境配置
+		(1) path环境变量
+			a. bat: ...\worknotes\D_Languages\bat\bat_script
+			b. adb_fastboot: https://developer.android.google.cn/studio/releases/platform-tools
+		(2) cmd窗口大小：右击-属性-布局-160*40
+	2. 安装软件
+		* Chrome Sougou 百度网盘 微信
+		* Notepad Utraedit Sourceinsight BeyondCompare
+		* Xmanager(Xshell)
+		* JDK(环境变量)
+		- MarkdownPad: http://markdownpad.com/
+====================================================================================================
+
+
+de-ENV:
+	#电脑归还|退库
+	. 提交worknotes修改到gitub
+	. 备份Chrome书签
+	. 备份有用文档、软件
+	. 卸载已安装软件
+====================================================================================================
