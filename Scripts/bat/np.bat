@@ -2,5 +2,5 @@
 @echo off
 set dst_file=%1
 
-set TXT_EXE=E:\program\Notepad++\notepad++.exe
+set TXT_EXE=E:\program\Notepad\Notepad++\notepad++.exe
 start %TXT_EXE% %dst_file%
