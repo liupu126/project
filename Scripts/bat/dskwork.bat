@@ -1,0 +1,1 @@
+@cd /d  F:\temp\desktop
