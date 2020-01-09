@@ -22,7 +22,7 @@ mkdir %logdir%
 mkdir %lograr%
 cd /d %logdir%
 
-adb wait-for-devices
+adb wait-for-device
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 adb shell screencap -p /sdcard/%dst_file%.png
