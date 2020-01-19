@@ -1,0 +1,51 @@
+how to switch deivce to edl mode
+
+====================================================================================================
+Definition of emergency download |
+----------------------------------------------------------------------------------------------------
+	Emergency download is the process which can program a Flash device that is empty 
+		or that contains a broken Secondary Boot Loader (SBL)
+
+	Emergency download mechanism is also known as naked boot mechanism, 
+		or blank Flash programming which doesn’t contain working boot loader in the Flash.
+====================================================================================================
+How to switch device to EDL |
+----------------------------------------------------------------------------------------------------
+	#1 - Send Diag command to dynamically switch from HLOS to EDL
+		/*****************************************************************************/
+		/**
+		This method is used to switch a device from Diagnostic mode to the Emergency Download mode.
+		This comand sent is "75 101 01 00" and is supported from the 8x26 devices onwards.
+		\param hResourceContext = ResourceContext
+		\return true if the result code is 0
+		\Note: This API only works with QMSL Static and Dynamic Libraries compiled under Visual Studio 2010. It is because the
+		underlying data structure can only be found the Windows SDK shipped VS2010
+		*******************************************************************************/
+		QLIB_API unsigned char QLIB_QPHONEMS_SwitchToEDL(HANDLE nResourceContext);
+		
+		未验证！！！
+
+	#2 - Use magic USB cable which can pull down D+ to ground at power up, 
+		the hardware boot pin check is in PBL, doesn’t require any software implementation
+		短接D+和地(剪开usb线，白线和黑线短接(2根线搭一根导线‘工’字形链接，其它线按原样连接))，重启，再接正常的USB线
+	
+	#3 - Use customized fixture to pull down the Forced EDL pin on PCBA, similar as #2.
+		拆机，PCB上短接2个点。
+		
+	#4 - Press key combination such as POWER + VOL UP + VOL DOWN at power up, this is implemented on most QRD baselines
+		lk (little kernel) records the reboot cause in SMEM, and sbl will check the value in SMEM, if the combination key is checked, the device will enter EDL
+		长按3个键“POWER + VOL UP + VOL DOWN”，高通原生代码是在SBL里进的edl(9008)
+		
+	#5 – Erase sbl1 by adb tool
+		adb reboot bootloader
+		fastboot erase sbl1
+		fastboot reboot
+		
+	#6 – Switch the device to EDL by adb command
+		adb reboot edl
+
+	#7 – Download the empty GPT partition to the device
+		It’s usually used to test the stability of SWDL tool circularly.
+		
+		未验证！！！
+====================================================================================================

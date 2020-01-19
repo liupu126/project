@@ -1,0 +1,38 @@
+====================================================================================================
+Backup
+	Qseecomd
+		This daemon is for TZ to access AP side.
+		It can provide many service.
+		SSD service is used to access SSD partition by TZ.
+====================================================================================================
+CVE and Security Vulnerability
+	Google has monthly bulletin
+		https://source.android.com/security/bulletin/
+		
+	Qualcomm¡¯s open source patch website
+		https://www.codeaurora.org/projects/security-advisories?project_id=251
+====================================================================================================
+FDE
+	FDE stands for full disk encryption
+		Protects /data partition
+	
+		(Backup: encrypt code process)
+	
+	https://source.android.com/security/encryption/
+====================================================================================================
+DM-Verity
+	verify the integrity and security of system image.
+
+	document: Firmware Over the AIR (FOTA) Workflow (80-NL409-1)
+====================================================================================================
+Verify Boot
+	verify the integrity and security of boot image and recovery.img. 
+	done by HLOS bootloader (Little Kernel),
+
+	https://source.android.com/security/verifiedboot/index.html
+====================================================================================================
+SELinux/SEAndroid 
+	
+====================================================================================================
+android_security_overview.pdf --> 80-P7207-1 A
+====================================================================================================

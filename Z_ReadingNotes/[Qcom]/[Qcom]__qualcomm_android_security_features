@@ -1,0 +1,51 @@
+====================================================================================================
+3.1 Request-based device mapper | begin
+--------------------------------------------------
+3 Proposal – Disk encryption |
+====================================================================================================
+2.9 Disk encryption with Inline Crypto Engine (ICE) |
+	Crypto Engine (CE)
+	Inline Crypto Engine (ICE)
+	
+	Android uses dm-crypt to encrypt the disk. 
+	dm-crypt is a disk encryption mechanism provided on top of a BIO-based device mapper 
+		that provides a virtual block layer on top of physical block devices. 
+	The dm layer clones and maps the block I/Os (BIOs) that it receives to the underlying physical device.
+----------------------------------------------------------------------------------------------------
+2.5 Device provision |
+	Replay Protected Memory Block (RPMB)
+	Hardware FDE uses RPMB to store the keystore version
+	If the user enabled the hardware disk encryption on the device, the device must provision RPMB
+----------------------------------------------------------------------------------------------------
+2.3.3 Android system (native layer) |
+	VOLD calls the QSEECom function QSEECom_create_key() with the user-provided password to create the hardware FDE key that is used to encrypt and decrypt the user data.
+		In the hardware-based FDE design, the VOLD does not store the key or user password in the crypto footer.
+----------------------------------------------------------------------------------------------------
+2.2.2 Software- and hardware-based disk encryption |
+----------------------------------------------------------------------------------------------------
+2.2.1 Encryption process overview | 
+	Settings > Security > Encrypt Phone
+		tregger Cryptkeeper(preliminary checks before encrypting)
+			sends a message to the Volume Daemon (VOLD) through the mount service
+				VOLD shuts down all services using the user data partition and then unmounts the user data partition
+				VOLD creates a crypto block device(maps the entire user data partition to the next available mapped device using dm-crypt)
+					encryption key (in the bottom 16 KB of the user data partition, encrypted with key drived from user password)
+						VOLD read raw data, encrypt, write to the newly created crypto block device
+	VOLD reboot device
+		mount service mount data partition fails(for data partition encrypted)
+			vold.decrypt = 1 set(tell system device is encrypted)
+				Cryptkeeper detects this, ask for user password
+					if correct, mount data partition.
+----------------------------------------------------------------------------------------------------
+2.2 Android disk encryption |
+	Android supports encryption of a user data partition and any nonremovable SD card
+		, but does not provide encryption facility for any other partition.
+		
+	based on the dm-crypt Linux kernel module
+	dm-crypt is based on the mapped device feature of the kernel and works at the block layer
+		map userdata partition to /dev/dm-N
+----------------------------------------------------------------------------------------------------
+2 Disk encryption on Android devices |
+====================================================================================================
+Qualcomm Android Security Features --> 80-NU861-1 E
+====================================================================================================

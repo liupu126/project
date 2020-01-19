@@ -1,0 +1,15 @@
+==================================================
+Full-Based Encryption
+	Direct Boot
+==================================================
+Full-Disk Encryption
+	
+==================================================
+Overview
+	Android has two methods for device encryption: 
+		Full-disk encryption
+		File-based encryption.
+==================================================
+Encryption
+	https://source.android.com/security/encryption/
+==================================================
