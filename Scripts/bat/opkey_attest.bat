@@ -21,6 +21,10 @@ adb wait-for-device
 
 ::Keymaster Attestation
 ping 127.0.0.1 -n 20 > nul
+
+:: I mv      : type=1400 audit(0.0:337): avc: denied { setattr } for name=".lii" dev="sda7" ino=32772 scontext=u:r:vold:s0 tcontext=u:object_r:op2_file:s0 tclass=dir permissive=0
+adb shell setenforce 0
+
 adb shell mkdir -p /sdcard/.lii
 adb push %attestation_file% /sdcard/.lii/keyboxes_ciphered.xml
 :: Android P
