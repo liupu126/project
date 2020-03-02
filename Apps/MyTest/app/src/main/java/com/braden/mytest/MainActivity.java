@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 //import android.support.v7.app.AppCompatActivity;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +15,8 @@ import com.braden.mytest.crash.CrashActivity;
 import com.braden.mytest.oeminfo.OeminfoActivity;
 import com.braden.mytest.cts.CtsActivity;
 import com.braden.mytest.utils.TestUtils;
+
+import java.io.File;
 
 public class MainActivity extends Activity
         implements View.OnClickListener {
@@ -75,7 +79,10 @@ public class MainActivity extends Activity
         //TestUtils.testForAll();
 
         // test resolveContentProvider
-        TestUtils.testResolveContentProvider();
+        // TestUtils.testResolveContentProvider();
+
+        // install apk
+        TestUtils.testInstallApp(this);
     }
 
 }

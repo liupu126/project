@@ -6,5 +6,6 @@
     <string name="button_oeminfo">Oeminfo</string>
     <string name="button_oeminfo_binder_timeout">binder timeout</string>
     <string name="button_cts">CTS</string>
+    <string name="button_misc">MISC</string>
     <string name="button_testInputMethodSubtypesOfSystemImes">testInputMethodSubtypesOfSystemImes</string>
 </resources>

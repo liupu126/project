@@ -1,15 +1,23 @@
 package com.braden.mytest.utils;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
-
+import 	android.support.v4.content.FileProvider;
+import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
@@ -157,5 +165,31 @@ public class TestUtils {
         } else {
             Log.e(TAG, "liupu: " + pi.toString());
         }
+    }
+
+    public static void testInstallApp(Context context) {
+        Log.d(TAG, "enter testInstallApp");
+        if (context instanceof Activity &&
+                ContextCompat.checkSelfPermission(context,Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Log.d(TAG, "request permission: android.permission.READ_EXTERNAL_STORAGE");
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            return;
+        }
+        Log.d(TAG, "install apk");
+
+        String filePath= Environment.getExternalStorageDirectory() + "/test.apk";
+        File file = new File(filePath);
+        Log.d(TAG, "filePath = " + filePath);
+
+        Intent installIntent =new Intent(Intent.ACTION_VIEW);
+        installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Uri apkUri = FileProvider.getUriForFile(context, "com.braden.mytest.fileprovider", file);
+            installIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            installIntent.setDataAndType(apkUri, "application/vnd.android.package-archive");
+        } else {
+            installIntent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        }
+        context.startActivity(installIntent);
     }
 }

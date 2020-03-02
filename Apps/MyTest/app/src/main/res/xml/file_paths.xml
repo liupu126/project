@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <files-path name="file" path="test_directory" /> <!--  Context.getFilesDir() + path -->
+    <cache-path name="cache" path="test_directory" /> <!--  Context.getCacheDir() + path -->
+    <external-path name="sdcard" path="" /> <!--  Environment.getExternalStorageDirectory()+ path -->
+    <external-files-path name="external_files" path="test_directory" /> <!--  Context.getExternalFilesDir(String)  + path -->
+    <external-cache-path name="external_cache" path="test_directory" /> <!--  Context.getExternalCacheDir() + path -->
+</resources>
