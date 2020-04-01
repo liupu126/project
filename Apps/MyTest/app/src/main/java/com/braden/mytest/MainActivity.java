@@ -82,7 +82,10 @@ public class MainActivity extends Activity
         // TestUtils.testResolveContentProvider();
 
         // install apk
-        TestUtils.testInstallApp(this);
+        //TestUtils.testInstallApp(this);
+
+        // testForArray
+        TestUtils.testForArray();
     }
 
 }

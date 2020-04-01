@@ -192,4 +192,88 @@ public class TestUtils {
         }
         context.startActivity(installIntent);
     }
+
+    public static void testForArray() {
+        Log.d(TAG, "enter testForArray");
+        String[] files = null;
+        try {
+            for (String f : files) {
+                Log.d(TAG, "testForArray f=" + f);
+            }
+        } catch (Exception e)
+        {
+            Log.d(TAG, "testForArray");
+            e.printStackTrace();
+        }
+
+        try {
+            File flashAgingFile = new File("/data/media/0/Download/flashvaltest.bin");
+            if (flashAgingFile.exists()) {
+                Log.i(TAG, "flashAgingFile.exists true");
+                /*
+                if (flashAgingFile.delete()) {
+                    Log.i(TAG, "/data/media/0/Download/flashvaltest.bin had delete!");
+                } else {
+                    Log.i(TAG, "/data/media/0/Download/flashvaltest.bin delete failed!");
+                }//*/
+            } else {
+                Log.i(TAG, "flashAgingFile.exists false");
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "delete /data/media/0/Download/flashvaltest.bin failed!!!");
+            e.printStackTrace();
+        }
+
+        try {
+            File flashAgingFile = new File("/sdcard/Download/flashvaltest.bin");
+            if (flashAgingFile.exists()) {
+                Log.i(TAG, "flashAgingFile.exists true /sdcard/Download/flashvaltest.bin");
+                /*
+                if (flashAgingFile.delete()) {
+                    Log.i(TAG, "/sdcard/Download/flashvaltest.bin had delete!");
+                } else {
+                    Log.i(TAG, "/sdcard/Download/flashvaltest.bin delete failed!");
+                }//*/
+            } else {
+                Log.i(TAG, "flashAgingFile.exists false /sdcard/Download/flashvaltest.bin");
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "delete /sdcard/Download/flashvaltest.bin failed!!!");
+            e.printStackTrace();
+        }
+
+        try {
+            File flashAgingFile = new File("/data/media/0/Download/flashvaltest.bin_data");
+            if (flashAgingFile.exists()) {
+                Log.i(TAG, "flashAgingFile.exists true /data/media/0/Download/flashvaltest.bin_data");
+            } else {
+                Log.i(TAG, "flashAgingFile.exists false /data/media/0/Download/flashvaltest.bin_data");
+                if (flashAgingFile.createNewFile()) {
+                    Log.i(TAG, "/data/media/0/Download/flashvaltest.bin_data had created!");
+                } else {
+                    Log.i(TAG, "/data/media/0/Download/flashvaltest.bin_data hadn't created!");
+                }
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "create /data/media/0/Download/flashvaltest.bin_data failed!!!");
+            e.printStackTrace();
+        }
+
+        try {
+            File flashAgingFile = new File("/sdcard/Download/flashvaltest.bin_sdcard");
+            if (flashAgingFile.exists()) {
+                Log.i(TAG, "flashAgingFile.exists true /sdcard/Download/flashvaltest.bin_sdcard");
+            } else {
+                Log.i(TAG, "flashAgingFile.exists false /sdcard/Download/flashvaltest.bin_sdcard");
+                if (flashAgingFile.createNewFile()) {
+                    Log.i(TAG, "/sdcard/Download/flashvaltest.bin_sdcard had created!");
+                } else {
+                    Log.i(TAG, "/sdcard/Download/flashvaltest.bin_sdcard hadn't created!");
+                }
+            }
+        } catch (Exception e) {
+            Log.i(TAG, "create /sdcard/Download/flashvaltest.bin_sdcard failed!!!");
+            e.printStackTrace();
+        }
+    }
 }
