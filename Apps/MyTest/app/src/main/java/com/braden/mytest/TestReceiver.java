@@ -10,6 +10,9 @@ import android.util.Log;
 public class TestReceiver extends BroadcastReceiver {
     private static final String TAG = TestReceiver.class.getSimpleName();
     private static final String ACTION_BOOT = Intent.ACTION_BOOT_COMPLETED;
+    private static final String ACTION_TEST_PHONE_CRASH = "com.braden.mytest.intent.ACTION_TEST_PHONE_CRASH";
+    // ACTION_TEST_PHONE_CRASH count
+    private static int sCount = 0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -25,6 +28,8 @@ public class TestReceiver extends BroadcastReceiver {
             } else {
                 Log.e(TAG, "liupu: " + pi.toString());
             }
+        } else if (ACTION_TEST_PHONE_CRASH.equals(action)) {
+            Log.e(TAG, "liupu: " + this + " ACTION_TEST_PHONE_CRASH sCount=" + (++sCount));
         }
     }
 }

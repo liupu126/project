@@ -78,14 +78,13 @@ public class MainActivity extends Activity
         // for simple tests
         //TestUtils.testForAll();
 
-        // test resolveContentProvider
         // TestUtils.testResolveContentProvider();
 
-        // install apk
         //TestUtils.testInstallApp(this);
 
-        // testForArray
-        TestUtils.testForArray();
+        //TestUtils.testForArray();
+
+        TestUtils.testPhoneCrashIssue(this);
     }
 
 }

@@ -3,8 +3,10 @@ package com.braden.mytest.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ProviderInfo;
@@ -17,10 +19,15 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
 import 	android.support.v4.content.FileProvider;
+
+import com.braden.mytest.TestReceiver;
+
 import java.io.File;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
+
+import static java.lang.Thread.sleep;
 
 public class TestUtils {
     public static final String TAG = TestUtils.class.getSimpleName();
@@ -275,5 +282,49 @@ public class TestUtils {
             Log.i(TAG, "create /sdcard/Download/flashvaltest.bin_sdcard failed!!!");
             e.printStackTrace();
         }
+    }
+
+    public static final String TEST_KEY = "test_key";
+    // java char -> 16bit;  1k char -> 2k bytes
+    public static final String CHAR_2K = "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678" +
+            "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678";
+    public static final String TEST_VALUE_64K = CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K +
+            CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K +
+            CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K +
+            CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K + CHAR_2K;
+
+    public static void testPhoneCrashIssue(final Context context) {
+        int a = 0;
+        while (a<10) {
+            a++;
+            Log.e(TAG, "registerReceiver ACTION_TEST_PHONE_CRASH -> " + a);
+            IntentFilter filter = new IntentFilter();
+            filter.addAction("com.braden.mytest.intent.ACTION_TEST_PHONE_CRASH");
+            context.registerReceiver(new TestReceiver(), filter);
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while (i < 1) {
+                    i++;
+
+                    Log.e(TAG, "send ACTION_TEST_PHONE_CRASH -> " + i);
+                    Intent intent = new Intent("com.braden.mytest.intent.ACTION_TEST_PHONE_CRASH");
+                    intent.putExtra(TEST_KEY, TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "2", TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "3", TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "4", TEST_VALUE_64K);//*/
+                    context.sendBroadcast(intent);
+                }
+            }
+        }).start();
     }
 }
