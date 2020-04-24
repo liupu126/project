@@ -84,7 +84,9 @@ public class MainActivity extends Activity
 
         //TestUtils.testForArray();
 
-        TestUtils.testPhoneCrashIssue(this);
+        //TestUtils.testPhoneCrashIssue(this);
+
+        TestUtils.testPhoneCrashIssue2(this);
     }
 
 }

@@ -318,9 +318,29 @@ public class TestUtils {
 
                     Log.e(TAG, "send ACTION_TEST_PHONE_CRASH -> " + i);
                     Intent intent = new Intent("com.braden.mytest.intent.ACTION_TEST_PHONE_CRASH");
-                    intent.putExtra(TEST_KEY, TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY, TEST_VALUE_64K);/*
                     intent.putExtra(TEST_KEY + "2", TEST_VALUE_64K);
                     intent.putExtra(TEST_KEY + "3", TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "4", TEST_VALUE_64K);//*/
+                    context.sendBroadcast(intent);
+                }
+            }
+        }).start();
+    }
+
+    public static void testPhoneCrashIssue2(final Context context) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int i = 0;
+                while (i < 100) {
+                    i++;
+
+                    Log.e(TAG, "send android.net.conn.CONNECTIVITY_CHANGE -> " + i);
+                    Intent intent = new Intent("android.net.conn.CONNECTIVITY_CHANGE");
+                    intent.putExtra(TEST_KEY, TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "2", TEST_VALUE_64K);
+                    intent.putExtra(TEST_KEY + "3", TEST_VALUE_64K);/*
                     intent.putExtra(TEST_KEY + "4", TEST_VALUE_64K);//*/
                     context.sendBroadcast(intent);
                 }
