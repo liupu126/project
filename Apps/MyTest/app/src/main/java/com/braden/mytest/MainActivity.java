@@ -86,13 +86,7 @@ public class MainActivity extends Activity
 
         //TestUtils.testPhoneCrashIssue(this);
 
-        // TestUtils.testPhoneCrashIssue2(this);
-
-        // test
-        while (true) {
-            Log.d(TAG, "while loop");
-            TestUtils.testForArray();
-        }
+        TestUtils.testPhoneCrashIssue2(this);
     }
 
 }

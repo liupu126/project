@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:sharedUserId="android.uid.phone"
     package="com.braden.mytest"
     >
     <!-- android:sharedUserId="android.uid.phone" -->
@@ -29,7 +28,7 @@
         </activity>
         <activity android:name=".crash.CrashActivity" />
         <activity android:name=".anr.ANRActivity" android:process="com.android.phone" />
-        <activity android:name=".oeminfo.OeminfoActivity" android:exported="false" android:process="com.android.phone"/>
+        <activity android:name=".oeminfo.OeminfoActivity" />
         <activity android:name=".cts.CtsActivity" />
         <receiver android:name=".TestReceiver">
             <intent-filter>
