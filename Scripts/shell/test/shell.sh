@@ -28,9 +28,27 @@ function getLastPartOfFullDir
 	echo ${dir_full}
 }
 
+function testCaseIn
+{
+    tmp=$1
+    case $tmp in
+    europe|eu)
+        echo "europe|eu"
+    ;;
+    *)
+        echo "others"
+    ;;
+    esac
+}
+
 echo "# get directory names below certain directory"
 getDirNamesBelowOneDir ~/work
 
 echo "# get the last part of full directory name"
 getLastPartOfFullDir /aa/bb/cc
 getLastPartOfFullDir /aa/bb/cc.txt
+
+echo "# test if case statement support | or not"
+testCaseIn europe
+testCaseIn eu
+testCaseIn xxxxxx
