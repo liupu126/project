@@ -3,7 +3,6 @@ package com.braden.mytest.utils;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -13,12 +12,13 @@ import android.content.pm.ProviderInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.WindowManager;
-import 	android.support.v4.content.FileProvider;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.braden.mytest.TestReceiver;
 
@@ -346,5 +346,36 @@ public class TestUtils {
                 }
             }
         }).start();
+    }
+
+    public static void deleteFiles(File file) {
+        //File baseDir = new File("/storage/0000-0000");
+        Log.e(TAG, "Trying to delete " + file.toString());
+        if (file.exists() && file.isDirectory()) {
+            Log.e(TAG, file.toString() + " IS DIRECTORY!");
+            File[] files = file.listFiles();
+            if (files == null) {
+                Log.e(TAG, file.toString() + " has no sub dirs/files");
+            } else {
+                for (File f : files) {
+                    deleteFiles(f);
+                }
+            }
+        }
+
+        boolean ret = file.delete();
+        Log.e(TAG, file.toString() + (ret ? " is " : " is NOT ") + "being deleted!");
+    }
+
+    public static void testBreakpoints(){
+        for (int i=0; i<100; i++) {
+            int index = i;
+            nextStep(index);
+        }
+    }
+    private static void nextStep(int index) {
+        Log.e(TAG, "nextStep index=" + index);
+
+        Log.e(TAG, "nextStep index+1=" + (index+1));
     }
 }

@@ -30,6 +30,7 @@ public class CtsActivity extends Activity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "liupu localeList:1");
         setContentView(R.layout.activity_cts);
 
         mContext = this;
@@ -40,6 +41,8 @@ public class CtsActivity extends Activity
 
     @Override
     public void onClick(View v) {
+        Log.e(TAG, "liupu localeList:2");
+        Log.e(TAG, "liupu localeList:3");
         int id = v.getId();
 
         if (R.id.button_testInputMethodSubtypesOfSystemImes == id)

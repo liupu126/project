@@ -86,7 +86,12 @@ public class MainActivity extends Activity
 
         //TestUtils.testPhoneCrashIssue(this);
 
-        TestUtils.testPhoneCrashIssue2(this);
+        //TestUtils.testPhoneCrashIssue2(this);
+
+        // TestUtils.deleteFiles(new File("/storage/0000-0000"));
+        // TestUtils.deleteFiles(new File("/storage/emulated/0"));
+
+        TestUtils.testBreakpoints();
     }
 
 }

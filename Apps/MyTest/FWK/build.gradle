@@ -1,0 +1,94 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.2"
+
+    defaultConfig {
+        minSdkVersion 30
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+ext {
+    // env from [ adb shell set ]
+    def BOOTCLASSPATH = "/apex/com.android.art/javalib/core-oj.jar:/apex/com.android.art/javalib/core-libart.jar:/apex/com.android.art/javalib/core-icu4j.jar:/apex/com.android.art/javalib/okhttp.jar:/apex/com.android.art/javalib/bouncycastle.jar:/apex/com.android.art/javalib/apache-xml.jar:/system/framework/framework.jar:/system/framework/ext.jar:/system/framework/telephony-common.jar:/system/framework/voip-common.jar:/system/framework/ims-common.jar:/system/framework/framework-atb-backward-compatibility.jar:/system/framework/tcmiface.jar:/system/framework/telephony-ext.jar:/system/framework/QPerformance.jar:/system/framework/UxPerformance.jar:/system/framework/WfdCommon.jar:/system/framework/oneplus-framework.jar:/system/framework/oneplus_framework_wrapper.jar:/system/framework/qcnvitems.jar:/apex/com.android.conscrypt/javalib/conscrypt.jar:/apex/com.android.media/javalib/updatable-media.jar:/apex/com.android.mediaprovider/javalib/framework-mediaprovider.jar:/apex/com.android.os.statsd/javalib/framework-statsd.jar:/apex/com.android.permission/javalib/framework-permission.jar:/apex/com.android.sdkext/javalib/framework-sdkextensions.jar:/apex/com.android.wifi/javalib/framework-wifi.jar:/apex/com.android.tethering/javalib/framework-tethering.jar"
+    def SYSTEMSERVERCLASSPATH = "/system/framework/com.android.location.provider.jar:/system/framework/services.jar:/system/framework/ethernet-service.jar:/system/framework/oneplus-services.jar:/system/framework/oneplus-wifi-service.jar:/apex/com.android.permission/javalib/service-permission.jar:/apex/com.android.wifi/javalib/service-wifi.jar:/apex/com.android.ipsec/javalib/android.net.ipsec.ike.jar"
+    def EXTRA_CLASSPATH = [
+            "/system/framework/updatable_media_stubs.jar",
+            "/system/framework/ims-ext-common.jar",
+            "/system/framework/qti-telephony-common.jar",
+            "/system/framework/jsr305.jar",
+            "/system/framework/error_prone_annotations.jar",
+            "/system/framework/dialer-error-prone-target.jar",
+            "/system/framework/libprotobuf-java-nano.jar",
+            "/system/framework/jacocoagent.jar",
+            "/system/framework/android.hidl.base-V1.0-java.jar",
+            "/system/framework/android.hidl.manager-V1.0-java.jar",
+            "/system/framework/framework-protos.jar",
+            "/system/framework/android.hardware.light-V2.0-java.jar",
+            "/system/framework/android.hardware.power-V1.0-java.jar",
+            "/system/framework/android.hardware.tv.cec-V1.0-java.jar",
+            "/system/framework/android.hardware.broadcastradio-V2.0-java.jar",
+            "/system/framework/android.hardware.health-V1.0-java.jar",
+            "/system/framework/android.hardware.health-V2.0-java.jar",
+            "/system/framework/android.hardware.weaver-V1.0-java.jar",
+            "/system/framework/android.hardware.biometrics.fingerprint-V2.1-java.jar",
+            "/system/framework/android.hardware.oemlock-V1.0-java.jar",
+            "/system/framework/android.hardware.tetheroffload.control-V1.0-java.jar",
+            "/system/framework/android.hardware.vibrator-V1.0-java.jar",
+            "/system/framework/android.hardware.configstore-V1.0-java.jar",
+            "/system/framework/android.hardware.contexthub-V1.0-java.jar",
+            "/system/framework/android.hardware.wifi-V1.1-java.jar",
+            "/system/framework/vendor.qti.hardware.data.latency-V1.0-java.jar"
+    ].join(":")
+
+    def fullClspath = BOOTCLASSPATH + ":" + EXTRA_CLASSPATH + ":" + SYSTEMSERVERCLASSPATH
+
+    libs = files(fullClspath.split(":").collect {
+        it.toString().replace("/system/framework", "sysLibs").replaceAll("/apex/.+/javalib", "libs")
+    }).filter { it.exists() }
+}
+
+def ANDROID_SRC_ROOT = 'Z:\\work\\r8250debug\\android'
+sourceSets {
+    main {
+        java {
+            srcDirs "$ANDROID_SRC_ROOT\\frameworks\\base\\core\\java",
+                    "$ANDROID_SRC_ROOT\\frameworks\\base\\services\\java",
+                    "$ANDROID_SRC_ROOT\\frameworks\\base\\services\\core\\java",
+                    "$ANDROID_SRC_ROOT\\vendor\\oneplus\\proprietary\\frameworks\\base\\core\\java",
+                    "$ANDROID_SRC_ROOT\\vendor\\oneplus\\proprietary\\frameworks\\base\\services\\java",
+                    "$ANDROID_SRC_ROOT\\vendor\\oneplus\\proprietary\\frameworks\\base\\services\\core\\java"
+
+        }
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation fileTree(dir: 'F:\\workspace\\github\\project\\Apps\\MyTest\\FWK\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+}
